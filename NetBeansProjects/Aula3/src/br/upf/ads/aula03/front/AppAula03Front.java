@@ -82,6 +82,18 @@ public class AppAula03Front {
 
     private static void excluir() {
         System.out.println("excluir...");
+        // Ler qual conta deseja excluir
+        // Remover da lista a conta lida
+        
+        
+        
+        // Para remover um objeto da lista
+        // opcao 1 = pelo indice
+        lista.remove(0); //
+        lista.remove(1);
+        int pos = 3;
+        lista.remove(pos);
+        
     }
 
     private static void listar() {
