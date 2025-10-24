@@ -1,4 +1,4 @@
-package br.upf.ads.aula02.model;
+package br.upf.ads.aula03.model;
 
 public class Conta {
     // atributos = variáveis
