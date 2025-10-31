@@ -27,8 +27,6 @@ public class AppAula01 {
         relatorio(c2);
         relatorio(c1);
         
-        
-        
     }
 
     private static void relatorio(Conta c2) {
