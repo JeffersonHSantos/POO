@@ -1,6 +1,6 @@
 package br.upf.ads.aula03.model;
 
-public class Conta {
+public final class Conta {
     // atributos = variáveis
     private Integer numero;
     private Float saldo;
