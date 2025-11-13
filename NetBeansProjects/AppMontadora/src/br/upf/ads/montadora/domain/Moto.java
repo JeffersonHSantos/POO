@@ -1,32 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.upf.ads.montadora.domain;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author 210017
- */
 public class Moto extends Veiculo implements Serializable {
+
     private Integer cilindradas;
 
-    public Moto() {
-    }
-
-    public Moto(Integer cilindradas) {
+    // Construtor simples
+    public Moto(Integer id, String placa, String modelo, Integer ano, Integer cilindradas) {
+        super(id, placa, modelo, ano);
         this.cilindradas = cilindradas;
     }
 
-    public Moto(Integer cilindradas, Integer id, String placa, String modelo, Integer ano, Motor motor, Chassi chassi, Empresa fabricante, Empresa fornecedor, List<Empresa> transportadores) {
-        super(id, placa, modelo, ano, motor, chassi, fabricante, fornecedor, transportadores);
+    // Construtor completo e correto
+    public Moto(Integer id, String placa, String modelo, Integer ano,
+            Motor motor, Chassi chassi, Empresa fornecedor,
+            Integer cilindradas) {
+
+        super(id, placa, modelo, ano);
+        this.setMotor(motor);
+        this.setChassi(chassi);
+        this.setFornecedor(fornecedor);
         this.cilindradas = cilindradas;
     }
 
+    // Getters e setters
     public Integer getCilindradas() {
         return cilindradas;
     }
@@ -37,19 +37,24 @@ public class Moto extends Veiculo implements Serializable {
 
     @Override
     public int hashCode() {
-        return super.hashCode(); // reutiliza o da superclasse
+        return Objects.hash(cilindradas);
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj); // reutiliza o da superclasse
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Moto other)) {
+            return false;
+        }
+        return Objects.equals(cilindradas, other.cilindradas);
     }
 
     @Override
     public String toString() {
-        return "Moto{" + "cilindradas=" + cilindradas + '}';
+        return "Moto{"
+                + "cilindradas=" + cilindradas
+                + '}';
     }
-    
-    
-
 }

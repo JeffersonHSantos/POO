@@ -16,9 +16,7 @@ public class AppAula03Front {
     // Atributo com a lista de contas em memória
     static ArrayList<Conta> lista = new ArrayList();
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String[] args) {
         
         

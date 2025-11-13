@@ -1,45 +1,51 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.upf.ads.montadora.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Veículo é a Superclasse
- * recebe Motor por agregação(podem viver separados)
- * recebe Chassi por composição(não pode viver separados)
- * 
- */
 public class Veiculo implements Serializable {
+
     private Integer id;
     private String placa;
     private String modelo;
     private Integer ano;
     private Motor motor;
-    private Chassi chassi;
+
     private Empresa fabricante;
     private Empresa fornecedor;
     private List<Empresa> transportadores;
+    private Chassi chassi;
 
-    public Veiculo() {
-    }
-
-    public Veiculo(Integer id, String placa, String modelo, Integer ano, Motor motor, Chassi chassi, Empresa fabricante, Empresa fornecedor, List<Empresa> transportadores) {
+    // Construtor principal
+    public Veiculo(Integer id, String placa, String modelo, Integer ano) {
         this.id = id;
         this.placa = placa;
         this.modelo = modelo;
         this.ano = ano;
+
+        // Evita NPE
+        this.transportadores = new ArrayList<>();
+    }
+
+    // Construtor completo
+    public Veiculo(Integer id, String placa, String modelo, Integer ano,
+                   Motor motor, Chassi chassi,
+                   Empresa fabricante, Empresa fornecedor,
+                   List<Empresa> transportadores) {
+
+        this(id, placa, modelo, ano); // chama o primeiro construtor
         this.motor = motor;
         this.chassi = chassi;
         this.fabricante = fabricante;
         this.fornecedor = fornecedor;
-        this.transportadores = transportadores;
+
+        // evita null, se vier null cria uma lista vazia
+        this.transportadores = (transportadores != null) ? transportadores : new ArrayList<>();
     }
 
+    // Getters e Setters
     public Integer getId() {
         return id;
     }
@@ -109,38 +115,37 @@ public class Veiculo implements Serializable {
     }
 
     public void setTransportadores(List<Empresa> transportadores) {
-        this.transportadores = transportadores;
+        this.transportadores = (transportadores != null) ? transportadores : new ArrayList<>();
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        return hash;
+        return Objects.hash(this.id);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null || getClass() != obj.getClass())
             return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Veiculo other = (Veiculo) obj;
+
+        Veiculo other = (Veiculo) obj;
         return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return "Veiculo{" + "id=" + id + ", placa=" + placa + ", modelo=" + modelo + ", ano=" + ano + ", motor=" + motor + ", chassi=" + chassi + ", fabricante=" + fabricante + ", fornecedor=" + fornecedor + ", transportadores=" + transportadores + '}';
+        return "Veiculo { " +
+                "id=" + id +
+                ", placa='" + placa + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", ano=" + ano +
+                ", motor=" + motor +
+                ", chassi=" + chassi +
+                ", fabricante=" + fabricante +
+                ", fornecedor=" + fornecedor +
+                ", transportadores=" + transportadores +
+                " }";
     }
-    
-    
-    
-    
-    
 }

@@ -1,62 +1,60 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.upf.ads.montadora.domain;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-/**
- *
- * @author 210017
- */
 public class Carro extends Veiculo implements Serializable {
 
     private Integer passageiros;
     private Integer portas;
 
-    public Carro() {
-    }
+    // Construtor simples
+    public Carro(Integer id, String placa, String modelo, Integer ano,
+            Integer passageiros, Integer portas) {
 
-    public Carro(Integer passageiros, Integer portas) {
+        super(id, placa, modelo, ano);
         this.passageiros = passageiros;
         this.portas = portas;
     }
 
-    public Carro(Integer passageiros, Integer portas, Integer id, String placa, String modelo, Integer ano, Motor motor, Chassi chassi, Empresa fabricante, Empresa fornecedor, List<Empresa> transportadores) {
-        super(id, placa, modelo, ano, motor, chassi, fabricante, fornecedor, transportadores);
+    // Construtor completo e correto
+    public Carro(Integer id, String placa, String modelo, Integer ano,
+            Integer passageiros, Integer portas,
+            Motor motor, Chassi chassi, Empresa fabricante) {
+
+        super(id, placa, modelo, ano);
+        this.setMotor(motor);
+        this.setChassi(chassi);
+        this.setFabricante(fabricante);
         this.passageiros = passageiros;
         this.portas = portas;
     }
 
-        
+    // Getters e setters
     public Integer getPassageiros() {
         return passageiros;
     }
 
-    
     public void setPassageiros(Integer passageiros) {
         this.passageiros = passageiros;
     }
 
-    
     public Integer getPortas() {
         return portas;
     }
 
-    
     public void setPortas(Integer portas) {
         this.portas = portas;
     }
 
+    public Integer getNumPassageiros() {
+        return passageiros;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.passageiros);
-        hash = 59 * hash + Objects.hashCode(this.portas);
-        return hash;
+        return Objects.hash(passageiros, portas);
     }
 
     @Override
@@ -64,27 +62,18 @@ public class Carro extends Veiculo implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (!(obj instanceof Carro other)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Carro other = (Carro) obj;
-        if (!Objects.equals(this.passageiros, other.passageiros)) {
-            return false;
-        }
-        return Objects.equals(this.portas, other.portas);
+        return Objects.equals(passageiros, other.passageiros)
+                && Objects.equals(portas, other.portas);
     }
 
     @Override
     public String toString() {
-        return "Carro{" + "passageiros=" + passageiros + ", portas=" + portas + '}';
+        return "Carro{"
+                + "passageiros=" + passageiros
+                + ", portas=" + portas
+                + '}';
     }
-
-    
-    
-    
-    
-    
 }

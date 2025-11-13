@@ -20,7 +20,7 @@ public class Chassi implements Serializable{
     
    
 
-    public Chassi() {
+    public Chassi(int par, String moD1234) {
     }
 
     public Chassi(Integer numero, String modelo, Veiculo veiculo) {

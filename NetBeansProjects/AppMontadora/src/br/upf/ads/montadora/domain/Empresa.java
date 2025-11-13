@@ -17,7 +17,7 @@ public class Empresa implements Serializable {
     private String cnpj;
     private Cidade cidade;
 
-    public Empresa() {
+    public Empresa(int par, String empresa_ABC, String string) {
     }
 
     public Empresa(Integer id, String nome, String cnpj, Cidade cidade) {
