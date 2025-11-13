@@ -7,13 +7,13 @@ package br.upf.ads.montadora.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+
 /**
  * Chassi está em composição de veículo(não vivem separados)
  * 
  */
 
 public class Chassi implements Serializable{
-    // tipo - atributo
     private Integer numero;
     private String modelo;
     private Veiculo veiculo;
@@ -55,7 +55,8 @@ public class Chassi implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
+        hash = 17 * hash + Objects.hashCode(this.numero);
         return hash;
     }
 
@@ -76,9 +77,8 @@ public class Chassi implements Serializable{
 
     @Override
     public String toString() {
-        return "Chassi{" + "numero=" + numero + ", modelo=" + modelo + '}';
+        return "Chassi{" + "numero=" + numero + ", modelo=" + modelo + ", veiculo=" + veiculo + '}';
     }
-    
     
     
     
