@@ -11,8 +11,8 @@ public class Veiculo implements Serializable {
     private String placa;
     private String modelo;
     private Integer ano;
+    
     private Motor motor;
-
     private Empresa fabricante;
     private Empresa fornecedor;
     private List<Empresa> transportadores;
@@ -29,7 +29,7 @@ public class Veiculo implements Serializable {
         this.transportadores = new ArrayList<>();
     }
 
-    // Construtor completo
+    
     public Veiculo(Integer id, String placa, String modelo, Integer ano,
                    Motor motor, Chassi chassi,
                    Empresa fabricante, Empresa fornecedor,
