@@ -44,6 +44,10 @@ public class TelaConta extends javax.swing.JFrame {
         btnListar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtEndereco = new javax.swing.JTextField();
+        txtTelefone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,13 +91,13 @@ public class TelaConta extends javax.swing.JFrame {
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Número", "Titular", "Saldo", "Endereço", "Telefone"
             }
         ));
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,10 +107,21 @@ public class TelaConta extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabela);
 
+        jLabel3.setText("Endereço");
+
+        jLabel4.setText("Telefone");
+
+        txtTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefoneActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,10 +130,6 @@ public class TelaConta extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtNumero))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(23, 23, 23)
-                        .addComponent(txtTitular))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnInserir)
                         .addGap(35, 35, 35)
                         .addComponent(btnAlterar)
@@ -126,9 +137,18 @@ public class TelaConta extends javax.swing.JFrame {
                         .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(btnListar)
-                        .addGap(9, 9, 9)))
+                        .addGap(9, 9, 9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelefone)
+                            .addComponent(txtEndereco)
+                            .addComponent(txtTitular))))
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,6 +161,14 @@ public class TelaConta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTitular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInserir)
@@ -148,7 +176,7 @@ public class TelaConta extends javax.swing.JFrame {
                     .addComponent(btnExcluir)
                     .addComponent(btnListar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -159,19 +187,21 @@ public class TelaConta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        Object [][] dados = new Object [lista.size()][3];
+        Object [][] dados = new Object [lista.size()][5];
         int lin = 0;
         for(Conta c : lista) {
                 dados [lin][0] = c.getNumero();
                 dados [lin][1] = c.getTitular();
                 dados [lin][2] = c.getSaldo();
+                dados [lin][3] = c.getEndereco();
+                dados [lin][4] = c.getTelefone();
                 lin++;
         }
         
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             dados,
             new String [] {
-                "Número", "Titular", "Saldo"
+                "Número", "Titular", "Saldo", "Endereço", "Telefone"
             }
         ));
         
@@ -196,6 +226,8 @@ public class TelaConta extends javax.swing.JFrame {
         Conta c = new Conta();
         c.setNumero( Integer.valueOf(txtNumero.getText()) );
         c.setTitular(txtTitular.getText());
+        c.setEndereco(txtEndereco.getText());
+        c.setTelefone(txtTelefone.getText());
         lista.add(c);
         JOptionPane.showMessageDialog(rootPane, "Incluído com sucesso.");
         btnListarActionPerformed(evt);
@@ -209,6 +241,8 @@ public class TelaConta extends javax.swing.JFrame {
         Conta objeto = lista.get(selecionada);
         txtNumero.setText(objeto.getNumero().toString());
         txtTitular.setText(objeto.getTitular()); 
+        txtEndereco.setText(objeto.getEndereco()); 
+        txtTelefone.setText(objeto.getTelefone()); 
         
         
         
@@ -220,12 +254,18 @@ public class TelaConta extends javax.swing.JFrame {
         Conta alterar = new Conta( Integer.valueOf (txtNumero.getText()) );
         Conta objeto = lista.get(lista.indexOf(alterar));
         objeto.setTitular(txtTitular.getText());
+        objeto.setTelefone(txtTelefone.getText());
+        objeto.setEndereco(txtEndereco.getText());
         JOptionPane.showMessageDialog(rootPane, "Alterado com sucesso.");
         btnListarActionPerformed(evt);        
         limpar();        
 
         
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,15 +299,21 @@ public class TelaConta extends javax.swing.JFrame {
     private javax.swing.JButton btnListar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
+    private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtTelefone;
     private javax.swing.JTextField txtTitular;
     // End of variables declaration//GEN-END:variables
     
     private void limpar(){
         txtNumero.setText("");
         txtTitular.setText("");
+        txtEndereco.setText("");
+        txtTelefone.setText("");
     }
 
 }

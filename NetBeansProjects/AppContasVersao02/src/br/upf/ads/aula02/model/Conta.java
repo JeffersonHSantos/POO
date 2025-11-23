@@ -8,6 +8,8 @@ public class Conta implements Serializable{
     private Integer numero;
     private Float saldo;
     private String titular;
+    private String endereco;
+    private String telefone;
 
     // métodos construtores = funções de inicialização
     public Conta() {
@@ -25,6 +27,15 @@ public class Conta implements Serializable{
         this.titular = titular;
         saldo = 0f;
     }
+
+    public Conta(Integer numero, Float saldo, String titular, String endereco, String telefone) {
+        setNumero(numero);
+        this.titular = titular;
+        saldo = 0f;
+        this.endereco = endereco;
+        this.telefone = telefone;
+    }
+    
     
     // operações e métodos = funções
     public void depositar(Float valor){
@@ -69,6 +80,23 @@ public class Conta implements Serializable{
     public Float getSaldo() {
         return saldo;
     }
+    
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+        
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;    
+    }
+    
 
     // substituição de equals e hashCode para tratar identidade única por atributo
     @Override
@@ -98,5 +126,13 @@ public class Conta implements Serializable{
     public String toString() {
         return  numero + " | " + titular;
     }
+
+    
+
+    
+
+    
+
+    
 
 }
