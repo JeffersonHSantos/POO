@@ -1,0 +1,6 @@
+./ESTRUTURA_PROJETO.txt
+./README.md
+./executar.bat
+./executar.sh
+./src/br/upf/ads/tde/dominio/Produto.java
+./src/br/upf/ads/tde/front/TelaProdutos.java
